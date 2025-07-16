@@ -24,4 +24,7 @@ An intelligent agent that detects system incidents and autonomously recovers fro
 - **Slack API** – Notifications (optional)
 
 ---
+📘 [View Full Architecture Flow](./ARCHITECTURE_FLOW.md)
+
+
 
