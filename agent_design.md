@@ -120,4 +120,4 @@ send_slack_message(f"Incident {incident_id} resolved via: {action}")
 | Backend Service        | FastAPI / Flask  |
 | Infra Actions          | Shell, Ansible, or Terraform (optional) |
 | Notification           | Slack / Email    |
-| Development Environment| Cursor IDE       |
+| Development Environment| Visual Studio code |
