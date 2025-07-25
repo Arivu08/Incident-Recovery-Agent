@@ -1,0 +1,11 @@
+groups:
+  - name: example-alert
+    rules:
+      - alert: PetClinicDown
+        expr: up{job="petclinic"} == 0
+        for: 5s
+        labels:
+          severity: critical
+        annotations:
+          summary: "PetClinic app is down"
+          description: "The PetClinic application is not reachable on port 8081."

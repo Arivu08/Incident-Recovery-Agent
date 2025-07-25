@@ -1,0 +1,40 @@
+services:
+  petclinic:
+    platform: linux/amd64
+    build:
+      context: ./spring-petclinic
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    depends_on:
+      - prometheus
+
+  ai-agent:
+    platform: linux/amd64
+    build:
+      context: ./ai-agent
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5001"
+    environment:
+      - MISTRAL_API_KEY=${MISTRAL_API_KEY}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock  # 🔥 enables container control
+
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus:/etc/prometheus
+    ports:
+      - "9090:9090"
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+
+  alertmanager:
+    image: prom/alertmanager
+    volumes:
+      - ./alertmanager:/etc/alertmanager
+    ports:
+      - "9093:9093"
+    command:
+      - '--config.file=/etc/alertmanager/alertmanager.yml'
